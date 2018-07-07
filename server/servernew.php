@@ -22,10 +22,8 @@ while(true){
     if($lastRequest == 0 || $lastRequest < $lastRow){
         $query = "SELECT * FROM small_chat.message WHERE small_chat.message.id > {$lastRequest} LIMIT 30";
         $result2 = $mysqli->query($query)->fetch_all();
-        $data = file_get_contents($source);
         $response = [
             'id' => $lastRow,
-            'data' => $data,
             'arr' => $result2,
         ];
         
