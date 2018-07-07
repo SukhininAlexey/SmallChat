@@ -9,7 +9,6 @@ if(isset($_POST['author']) && isset($_POST['message'])){
     $time = time();
     $query = "INSERT INTO `small_chat`.`message` (`time`, `author`, `message`) VALUES ({$time}, '{$author}', '{$message}')";
     $res = $mysqli->query($query);
-    var_dump($query);
     exit;
 }
 
@@ -21,10 +20,10 @@ while(true){
     
     if($lastRequest == 0 || $lastRequest < $lastRow){
         $query = "SELECT * FROM small_chat.message WHERE small_chat.message.id > {$lastRequest} LIMIT 30";
-        $result2 = $mysqli->query($query)->fetch_all();
+        $result = $mysqli->query($query)->fetch_all();
         $response = [
             'id' => $lastRow,
-            'arr' => $result2,
+            'arr' => $result,
         ];
         
         echo json_encode($response);
